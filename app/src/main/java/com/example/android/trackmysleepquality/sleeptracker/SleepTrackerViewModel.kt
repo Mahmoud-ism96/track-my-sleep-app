@@ -41,6 +41,18 @@ class SleepTrackerViewModel(
         viewModelJob.cancel()
     }
 
+    private val _navigateToSleepDataQuality = MutableLiveData<Long>()
+    val navigateToSleepDataQuality
+        get() = _navigateToSleepDataQuality
+
+    fun onSleepNightClicked(id: Long) {
+        _navigateToSleepDataQuality.value = id
+    }
+
+    fun onSleepDataQualityNavigated() {
+        _navigateToSleepDataQuality.value = null
+    }
+
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val tonight = MutableLiveData<SleepNight?>()
